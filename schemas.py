@@ -10,3 +10,6 @@ class Skills:
 
 class LinkResponse(BaseModel):
     link: HttpUrl
+
+class MessageBody(BaseModel):
+    message: str
