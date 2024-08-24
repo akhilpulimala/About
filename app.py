@@ -1,21 +1,22 @@
 from typing import Union
 
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Request
 from fastapi.responses import HTMLResponse
 from schemas import Skills, LinkResponse
 app = FastAPI()
 
 
 @app.get("/", response_class=HTMLResponse)
-def welcome():
+def welcome(request: Request):
 
-   return """
+   root_url = request.url_for("welcome")
+   return f"""
     <html>
     <head>
         <title>Welcome</title>
     </head>
     <body>
-       { To know more about me, come through the back door!! <a href='http://localhost:8000/docs'>open</a> }
+       To know more about me, come through the back door!! <a href='{root_url}docs'>open</a>
     </html>
     """
 
